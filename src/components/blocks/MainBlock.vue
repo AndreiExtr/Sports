@@ -8,8 +8,6 @@
         :sportId="sport.sport_id"
         @select="handleCardSelect"
         @delete="handleDelete"
-        @toggleFavorite="handleToggleFavorite"
-        :isFavorite="favorites.includes(sport.sport_id)"
       />
     </div>
   </div>
@@ -26,9 +24,9 @@ export default {
   data () {
     return {
       sports: [],
-      deletedSports: JSON.parse(localStorage.getItem('deletedSports') || '[]'), // Список удаленных карточек из localStorage
-      favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
-      isFavoritesOnly: false // Состояние чекбокса "Показать только избранные"
+      deletedSports: JSON.parse(localStorage.getItem('deletedSports') || '[]') // Список удаленных карточек из localStorage
+      // favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
+      // isFavoritesOnly: false // Состояние чекбокса "Показать только избранные"
     }
   },
   computed: {
@@ -68,19 +66,19 @@ export default {
       } else {
         console.error('Invalid sportId or sportName')
       }
-    },
-    handleToggleFavorite (sportId) {
-      const index = this.favorites.indexOf(sportId)
-      if (index === -1) {
-        this.favorites.push(sportId)
-      } else {
-        this.favorites.splice(index, 1)
-      }
-      localStorage.setItem('favorites', JSON.stringify(this.favorites))
-    },
-    toggleFavorites (isChecked) {
-      this.isFavoritesOnly = isChecked
     }
+    // handleToggleFavorite (sportId) {
+    //   const index = this.favorites.indexOf(sportId)
+    //   if (index === -1) {
+    //     this.favorites.push(sportId)
+    //   } else {
+    //     this.favorites.splice(index, 1)
+    //   }
+    //   localStorage.setItem('favorites', JSON.stringify(this.favorites))
+    // },
+    // toggleFavorites (isChecked) {
+    //   this.isFavoritesOnly = isChecked
+    // }
   }
 }
 </script>

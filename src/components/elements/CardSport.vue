@@ -2,7 +2,8 @@
   <div class="card" >
     <p class="card_title" @click="handleClick">{{ sportName }}</p>
     <div class="card_icons">
-      <FavoriteIcon :itemId="sportId" :isFavorite="isFavorite" @click="toggleFavorite" />
+      <FavoriteIcon :itemId="sportId" />
+      <!-- <FavoriteIcon :itemId="sportId" :isFavorite="isFavorite" @click="toggleFavorite" /> -->
       <DeleteIcon @delete="deleteCard"/>
     </div>
   </div>
@@ -27,11 +28,11 @@ export default {
     sportId: {
       type: [String, Number],
       required: true
-    },
-    isFavorite: {
-      type: Boolean,
-      default: false
     }
+    // isFavorite: {
+    //   type: Boolean,
+    //   default: false
+    // }
   },
   methods: {
     ...mapActions(['removeItem']),
@@ -41,10 +42,10 @@ export default {
     deleteCard () {
       console.log('Deleting card with ID:', this.sportId)
       this.$emit('delete', this.sportId)
-    },
-    toggleFavorite () {
-      this.$emit('toggleFavorite', this.sportId)
     }
+    // toggleFavorite () {
+    //   this.$emit('toggleFavorite', this.sportId)
+    // }
   }
 }
 </script>

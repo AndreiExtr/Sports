@@ -8,7 +8,7 @@
     <p v-if="showTitle">СПИСОК ВИДОВ СПОРТА</p>
     <p v-if="showSportHeader">КОМАНДЫ ПО {{ sportName }}</p>
     <div class="head_inputСheckbox" v-if="showCheck">
-      <input type="checkbox" class="checkbox" id="agreement" v-model="isFavoritesOnly" @change="$emit('toggleFavorites', $event.target.checked)">
+      <input type="checkbox" class="checkbox" id="agreement" >
       <h4>Показать только избранные</h4>
     </div>
   </header>
