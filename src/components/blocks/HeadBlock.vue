@@ -7,10 +7,10 @@
     />
     <p v-if="showTitle">СПИСОК ВИДОВ СПОРТА</p>
     <p v-if="showSportHeader">КОМАНДЫ ПО {{ sportName }}</p>
-    <div class="head_inputСheckbox" v-if="showCheck">
+    <!-- <div class="head_inputСheckbox" v-if="showCheck">
       <input type="checkbox" class="checkbox" id="agreement" >
       <h4>Показать только избранные</h4>
-    </div>
+    </div> -->
   </header>
 </template>
 
@@ -102,6 +102,10 @@ export default {
 
   @media (max-width: 1280px) {
     padding: 20px 40px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 20px 20px;
   }
 }
 </style>

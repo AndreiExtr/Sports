@@ -105,5 +105,9 @@ export default {
   @media (max-width: 1280px) {
     margin: 100px 40px;
   }
+
+  @media (max-width: 375px) {
+    margin: 70px 20px;
+  }
 }
 </style>

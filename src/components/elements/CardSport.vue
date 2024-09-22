@@ -90,5 +90,9 @@ export default {
   &:hover {
     box-shadow: 0px 10px 17px #00c3ff2e;
   }
+
+  @media (max-width: 450px) {
+    width: 100%;
+  }
 }
 </style>

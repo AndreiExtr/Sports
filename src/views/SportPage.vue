@@ -71,8 +71,12 @@ export default {
     gap: 20px;
     margin: 130px 200px;
 
-    @media (max-width: 768px) {
-      margin: 130px 40px;
+    @media (max-width: 1200px) {
+      margin: 90px 20px;
+    }
+
+    @media (max-width: 375px) {
+      margin: 70px 20px;
     }
   }
 }
