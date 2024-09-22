@@ -66,14 +66,14 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     margin: 130px 200px;
-  }
 
-  @media (max-width: 1280px) {
-    margin: 0px 40px;
+    @media (max-width: 768px) {
+      margin: 130px 40px;
+    }
   }
 }
 </style>
