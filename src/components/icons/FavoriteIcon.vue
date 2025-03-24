@@ -34,9 +34,6 @@ export default {
     toggleActive () {
       this.toggleFavorite(this.itemId)
     }
-  },
-  created () {
-    this.$store.dispatch('initializeFavorites')
   }
 }
 </script>

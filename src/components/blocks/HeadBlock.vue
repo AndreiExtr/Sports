@@ -1,14 +1,20 @@
 <template>
   <header class="head">
     <BackIcon
-    @click="this.$router.go(-1)"
-    v-if="isActiveBack"
-    v-bind:class="{ active: isActiveBack }"
+      @click="$router.go(-1)"
+      v-if="isActiveBack"
+      :class="{ active: isActiveBack }"
     />
     <p v-if="showTitle">СПИСОК ВИДОВ СПОРТА</p>
     <p v-if="showSportHeader">КОМАНДЫ ПО {{ sportName }}</p>
     <div class="head_inputСheckbox" v-if="showCheck">
-      <input type="checkbox" class="checkbox" id="agreement" >
+      <input
+        type="checkbox"
+        class="checkbox"
+        id="agreement"
+        :checked="isFavoritesOnly"
+        @change="toggleFavorites"
+      >
       <h4>Показать только избранные</h4>
     </div>
   </header>
@@ -24,9 +30,11 @@ export default {
   },
   props: {
     isActiveBack: Boolean,
+    isFavoritesOnly: Boolean,
     sportName: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     showSportHeader: {
       type: Boolean,
@@ -39,6 +47,11 @@ export default {
     showCheck: {
       type: Boolean,
       default: true
+    }
+  },
+  methods: {
+    toggleFavorites () {
+      this.$emit('toggle-favorites', !this.isFavoritesOnly)
     }
   }
 }
