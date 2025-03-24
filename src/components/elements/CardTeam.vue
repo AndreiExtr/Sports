@@ -46,6 +46,7 @@ export default {
     margin: 0;
     position: relative;
     line-height: 2.2;
+    width: 100%;
   }
 
   &_item {

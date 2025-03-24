@@ -1,6 +1,6 @@
 <template>
-  <div class="content_main">
-    <div class="content_main_cards">
+  <div class="content-main">
+    <div class="content-main__cards">
       <CardSport
         v-for="sport in filteredSports"
         :key="sport.sport_id"
@@ -24,9 +24,9 @@ export default {
   data () {
     return {
       sports: [],
-      deletedSports: JSON.parse(localStorage.getItem('deletedSports') || '[]') // Список удаленных карточек из localStorage
-      // favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
-      // isFavoritesOnly: false // Состояние чекбокса "Показать только избранные"
+      deletedSports: JSON.parse(localStorage.getItem('deletedSports') || '[]'), // Список удаленных карточек из localStorage
+      favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
+      isFavoritesOnly: false // Состояние чекбокса "Показать только избранные"
     }
   },
   computed: {
@@ -66,48 +66,58 @@ export default {
       } else {
         console.error('Invalid sportId or sportName')
       }
+    },
+    handleToggleFavorite (sportId) {
+      const index = this.favorites.indexOf(sportId)
+      if (index === -1) {
+        this.favorites.push(sportId)
+      } else {
+        this.favorites.splice(index, 1)
+      }
+      localStorage.setItem('favorites', JSON.stringify(this.favorites))
+    },
+    toggleFavorites (isChecked) {
+      this.isFavoritesOnly = isChecked
     }
-    // handleToggleFavorite (sportId) {
-    //   const index = this.favorites.indexOf(sportId)
-    //   if (index === -1) {
-    //     this.favorites.push(sportId)
-    //   } else {
-    //     this.favorites.splice(index, 1)
-    //   }
-    //   localStorage.setItem('favorites', JSON.stringify(this.favorites))
-    // },
-    // toggleFavorites (isChecked) {
-    //   this.isFavoritesOnly = isChecked
-    // }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.content_main{
+<style lang="scss">
+.content-main {
   margin-top: 119px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 35px;
-  margin: 130px 200px;
+  padding: 20px 200px;
+  height: 100%;
 
-  &_cards{
+  &__cards {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+
+    justify-content: flex-start;
+
+    /* Для карточек */
+    > * {
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 200px;
+      max-width: calc(33.333% - 20px);
+    }
+
+    /* Для мобильных */
+    @media (max-width: 768px) {
+      > * {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+      }
+    }
   }
 
   @media (max-width: 1280px) {
-    margin: 100px 40px;
+    padding: 20px;
   }
 
   @media (max-width: 375px) {
-    margin: 70px 20px;
+    padding: 10px;
   }
 }
 </style>

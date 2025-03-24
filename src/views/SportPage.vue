@@ -1,5 +1,5 @@
 <template>
-  <div class="content_teams">
+  <div class="content-teams">
     <HeadBlock
     :isActiveBack="true"
     :showSportHeader="true"
@@ -7,7 +7,7 @@
     :showTitle="false"
     :showCheck="false"
     />
-    <div class="content_teams_cards">
+    <div class="content-teams__cards">
       <CardTeam
         v-for="team in teams"
         :key="team.team_id"
@@ -33,7 +33,7 @@ export default {
     const route = useRoute()
     const sportId = route.params.sportId || route.query.sportId
     const sportName = route.query.sportName || 'Default Sport Name'
-    const teams = ref([]) // объявляем реактивную переменную teams
+    const teams = ref([])
 
     onMounted(() => {
       fetch(`https://api.apilayer.com/therundown/sports/${sportId}/teams`, {
@@ -55,28 +55,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content_teams{
+.content-teams{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 
-  &_cards{
+  &__cards{
+    margin-top: 119px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 130px 200px;
+    padding: 20px 200px;
 
-    @media (max-width: 1200px) {
-      margin: 90px 20px;
+    justify-content: flex-start;
+
+    /* Для карточек */
+    > * {
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 200px;
+      max-width: calc(33.333% - 20px);
+    }
+
+    /* Для мобильных */
+    @media (max-width: 768px) {
+      > * {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+      }
+    }
+
+    @media (max-width: 1280px) {
+      padding: 20px;
     }
 
     @media (max-width: 375px) {
-      margin: 70px 20px;
+      padding: 10px;
     }
   }
 }
